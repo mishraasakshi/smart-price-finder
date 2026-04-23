@@ -1,4 +1,4 @@
-const API = "https://YOUR-RENDER-URL.onrender.com";
+const API = "https://smart-price-finder-2w16.onrender.com";
 
 // Allow Enter key to trigger search
 document.getElementById("searchInput")
