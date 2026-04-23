@@ -182,7 +182,7 @@ GET /search?q=samsung+galaxy
 
 ## 👩‍💻 Author
 
-**Asakshi Mishra**
+**Sakshi Mishra**
 - GitHub: [@mishraasakshi](https://github.com/mishraasakshi)
 
 ---
