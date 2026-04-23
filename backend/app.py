@@ -45,6 +45,17 @@ def search():
             "details": errors
         }), 404
 
+    # Clean up titles — strip everything after first rating pattern
+    import re
+    for item in results:
+        title = item.get("title", "")
+        title = re.sub(r'\d+\.\d+\d+\.\d+ out of.*', '', title)
+        title = re.sub(r'\d+\.\d+ out of.*', '', title)
+        title = re.sub(r'\(\d[\d,\.K\+]*\).*', '', title)
+        title = re.sub(r'\d+ out of \d+ stars.*', '', title)
+        title = title.strip()
+        item["title"] = title
+
     # Sort all results by price (lowest first)
     results.sort(key=lambda x: x.get("price_raw", float("inf")))
 
