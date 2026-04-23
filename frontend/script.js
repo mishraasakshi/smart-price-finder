@@ -1,4 +1,4 @@
-const API = "http://127.0.0.1:5000";
+const API = "https://YOUR-RENDER-URL.onrender.com";
 
 // Allow Enter key to trigger search
 document.getElementById("searchInput")
