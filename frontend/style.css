@@ -1,0 +1,272 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #0f1117;
+  --surface:  #1a1d27;
+  --card:     #20232f;
+  --border:   #2e3244;
+  --accent:   #6c63ff;
+  --accent2:  #ff6584;
+  --text:     #e8eaf6;
+  --muted:    #8b90a7;
+  --success:  #00c896;
+  --amazon:   #ff9900;
+  --flipkart: #2874f0;
+  --radius:   14px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ─────────────────────────────── */
+header {
+  text-align: center;
+  padding: 48px 20px 32px;
+  background: linear-gradient(160deg, #1a1d27 0%, #0f1117 100%);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tagline {
+  color: var(--muted);
+  margin-top: 8px;
+  font-size: 0.95rem;
+}
+
+/* ── Main ───────────────────────────────── */
+main { flex: 1; max-width: 1100px; margin: 0 auto; width: 100%; padding: 32px 20px; }
+
+/* ── Search ─────────────────────────────── */
+.search-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 14px 20px;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-box input:focus { border-color: var(--accent); }
+.search-box input::placeholder { color: var(--muted); }
+
+.search-box button {
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+  white-space: nowrap;
+}
+
+.search-box button:hover  { opacity: 0.88; }
+.search-box button:active { transform: scale(0.97); }
+.search-box button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Status ─────────────────────────────── */
+.status {
+  text-align: center;
+  padding: 16px;
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+.status.loading { background: var(--surface); color: var(--muted); border: 1px solid var(--border); }
+.status.error   { background: #2d1a1a; color: #ff6b6b; border: 1px solid #5c2323; }
+.hidden         { display: none !important; }
+
+/* ── Summary bar ────────────────────────── */
+.summary {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 18px;
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+/* ── Results grid ───────────────────────── */
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* ── Product card ───────────────────────── */
+.card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+  border-color: var(--accent);
+}
+
+.card.best {
+  border-color: var(--success);
+  box-shadow: 0 0 0 1px var(--success);
+}
+
+/* Best deal badge */
+.best-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--success);
+  color: #003d2b;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+/* Source badge */
+.source-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 2;
+}
+.source-badge.amazon   { background: #3d2600; color: var(--amazon); }
+.source-badge.flipkart { background: #0d1f4a; color: var(--flipkart); }
+
+/* Product image */
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  background: #13151f;
+  padding: 16px;
+}
+
+/* Card body */
+.card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+
+.card-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-price {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--success);
+  letter-spacing: -0.5px;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.stars { color: #f5c518; letter-spacing: 1px; }
+
+/* Buy button */
+.card-footer { padding: 0 16px 16px; }
+
+.buy-btn {
+  display: block;
+  width: 100%;
+  padding: 11px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.buy-btn:hover { opacity: 0.85; }
+.buy-btn.amazon   { background: var(--amazon);   color: #000; }
+.buy-btn.flipkart { background: var(--flipkart); color: #fff; }
+
+/* ── Footer ─────────────────────────────── */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Skeleton loader ────────────────────── */
+.skeleton {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.skel-img  { width: 100%; height: 200px; background: var(--surface); }
+.skel-body { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.skel-line {
+  height: 14px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--surface) 25%, var(--border) 50%, var(--surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+.skel-line.short { width: 45%; }
+.skel-line.med   { width: 65%; }
+
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+/* ── Responsive ─────────────────────────── */
+@media (max-width: 540px) {
+  .logo { font-size: 1.5rem; }
+  .search-box { flex-direction: column; }
+  .search-box button { width: 100%; }
+}
